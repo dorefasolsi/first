@@ -101,6 +101,8 @@ public class CommonController {
 	@GetMapping("updateBoardPage")
 	public ModelAndView updateBoardPage(Board board, ModelAndView mv) {
 		
+//		커밋테스트용
+//		커밋테스트용2		
 		
 		Board detailBoard = commonService.detailBoard(board);
 		System.out.println(detailBoard);
