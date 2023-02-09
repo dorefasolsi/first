@@ -103,6 +103,7 @@ public class CommonController {
 		
 //		커밋테스트용
 //		커밋테스트용2		
+//		브랜치 테스트용
 		
 		Board detailBoard = commonService.detailBoard(board);
 		System.out.println(detailBoard);
