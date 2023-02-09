@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mira.first.mapper.MemberMapper">
+
+	<resultMap id="MemberResultSet" type="Member">
+		<result column="mid" property="mid" />
+		<result column="mpw" property="mpw" />
+		<result column="mname" property="mname" />
+	</resultMap>
+	
+	<resultMap id="BoardResultSet" type="Board">	
+		<result column="bno" property="bno" />
+		<result column="btitle" property="btitle" />
+		<result column="bcontent" property="bcontent" />
+		<result column="bdate" property="bdate" />
+		<result column="mid" property="mid" />
+	</resultMap>
+
+	<select id="loginMember" resultMap="MemberResultSet"
+		parameterType="member">
+
+			SELECT *
+			FROM
+			MEMBER
+			WHERE
+				mid = #{mid}
+			and
+				mpw = #{mpw}
+			
+
+	</select>
+	
+	
+	<select id="boardList" resultMap="BoardResultSet"
+		parameterType="board">
+		<![CDATA[
+			SELECT *
+			FROM
+			board
+		]]>
+	</select>
+
+
+
+	<insert id="insertMember" parameterType="com.mira.first.vo.Member">
+		<![CDATA[
+			insert into member(
+				mid
+				, mpw
+				, mname
+				) values (
+				#{mid}
+				, #{mpw}
+				, #{mname});
+
+		
+		]]>
+	
+	</insert>
+	
+	<insert id="insertBoard" parameterType="com.mira.first.vo.Board">
+		<![CDATA[
+			insert into board(
+				btitle
+				, bcontent
+				, mid
+				) values (
+				#{btitle}
+				, #{bcontent}
+				, #{mid});
+		
+		]]>
+	
+	</insert>
+	
+	<select id="detailBoard" resultMap="BoardResultSet"
+		parameterType="board">
+		<![CDATA[
+			select * from board
+				where bno = #{bno};
+		]]>
+	</select>
+	
+	
+	<delete id="deleteBoard" parameterType="board">
+		<![CDATA[
+			delete from board
+				where bno = #{bno};
+		]]>		
+	
+	</delete>
+	
+	<update id="updateBoard" parameterType="board">
+		<![CDATA[
+			update board 
+			set
+				btitle = #{btitle}
+				, bcontent = #{bcontent}
+			where bno = #{bno};
+					
+		]]>		
+	</update>
+
+
+</mapper>
