@@ -107,9 +107,6 @@ public class CommonController {
 		System.out.println("넘어옴?");
 		mv.addObject("detailBoard", detailBoard);
 		mv.setViewName("boardDetailView");
-//		경 ㅠ 로 ㅠ 왜 ㅠ ㅠ못 ㅠ ㅍ찾 ㅠ니 ㅠ ㅠ ㅠ ㅠ ㅠ ㅠ ㅠ ㅠ ㅠ ㅠ???? 
-//		뭘 모르지 ㅜ ㅠ ㅠ ㅠ ㅠ뭘 잘못햇지 ㅠ ㅠ ㅠ ㅠ??ㅇ/ㅠㅠ?ㅠ?ㅠㅠ?ㅠ?ㅠ?ㅠ
-		//ㅠㅜㅠㅣㅏㅁㅇ리ㅏ우ㅠㅜㅠㅜㅠㅜㅠㅜㅠㅜㅠㅜ
 		int result = commonService.updateBoard(board);
 		
 		return mv;
