@@ -17,89 +17,100 @@
 		<result column="mid" property="mid" />
 	</resultMap>
 
-	<select id="loginMember" resultMap="MemberResultSet"
-		parameterType="member">
 
-			SELECT *
-			FROM
-			MEMBER
-			WHERE
-				mid = #{mid}
-			and
-				mpw = #{mpw}
-			
+	<!-- 로그인 -->
+	<select id="loginMember" resultMap="MemberResultSet" parameterType="member">
+
+		select *
+			from MEMBER
+			where
+				MID = #{mid}
+			and	
+				MPW = #{mpw}
 
 	</select>
 	
-	
-	<select id="boardList" resultMap="BoardResultSet"
-		parameterType="board">
-		<![CDATA[
-			SELECT *
-			FROM
-			board
-		]]>
-	</select>
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="member">
 
+		insert into MEMBER(
+			MID
+			, MPW
+			, MNAME
+		) values (
+			#{mid}
+			, #{mpw}
+			, #{mname}
+		)
 
-
-	<insert id="insertMember" parameterType="com.mira.first.vo.Member">
-		<![CDATA[
-			insert into member(
-				mid
-				, mpw
-				, mname
-				) values (
-				#{mid}
-				, #{mpw}
-				, #{mname});
-
-		
-		]]>
-	
 	</insert>
 	
-	<insert id="insertBoard" parameterType="com.mira.first.vo.Board">
-		<![CDATA[
-			insert into board(
-				btitle
-				, bcontent
-				, mid
-				) values (
-				#{btitle}
-				, #{bcontent}
-				, #{mid});
-		
-		]]>
 	
+	<!-- 게시글 전체 조회 -->
+	<select id="boardList" resultMap="BoardResultSet" parameterType="board">
+
+ 		select * 
+			from BOARD
+			order by bno desc
+
+
+		<!-- select *
+		from ( select
+		@rownum := @rownum +1 as rownum,
+		b.*
+		from board b,
+		(select @rownum:=0) tmp
+		order by bno asc)sub
+		order by sub.rownum desc
+		 -->
+		<!-- 글번호 없고 정/역 아니면 rownum 사용했을텐데.. 퇴근하고 정리할때 지우기~! -->
+
+	</select>
+
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="board">
+
+		insert into BOARD(
+			BTITLE
+			, BCONTENT
+			, MID
+		) values (
+			#{btitle}
+			, #{bcontent}
+			, #{mid}
+		)
+
 	</insert>
 	
-	<select id="detailBoard" resultMap="BoardResultSet"
-		parameterType="board">
-		<![CDATA[
-			select * from board
-				where bno = #{bno};
-		]]>
+	<!-- 게시글 상세조회 -->
+	<select id="detailBoard" resultMap="BoardResultSet" parameterType="board">
+
+		select * 
+			from BOARD
+			where BNO = #{bno};
+
 	</select>
 	
 	
+	<!-- 게시글 삭제 -->
 	<delete id="deleteBoard" parameterType="board">
-		<![CDATA[
-			delete from board
-				where bno = #{bno};
-		]]>		
+
+		delete 
+			from BOARD
+			where BNO = #{bno};
 	
 	</delete>
 	
+	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="board">
-		<![CDATA[
-			update board 
+
+		update BOARD
 			set
-				btitle = #{btitle}
-				, bcontent = #{bcontent}
-			where bno = #{bno};
-					
-		]]>		
+				BTITLE = #{btitle}
+				, BCONTENT = #{bcontent}
+			where 
+				BNO = #{bno};
+				
 	</update>
 
 
