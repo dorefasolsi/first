@@ -29,19 +29,22 @@
 </head>
 <body>
     <div class="container" id="b_container">
-        <form action="#">
+        <form action="updateBoard" method="post">
             
             <div class="container">
                 <h2>수정하기</h2>
                 <p>내용을 변경할 수 있습니다.</p>
-                <table class="table">
+                <table class="table" th:object="${detailBoard}">
+                	<tr>
+                		<td><input name="bno" th:value="*{bno}"></td>
+                	</tr>
                     <tr>
                       <td class="b_title">제목</td>
-                      <td><input type="text" class="b_context" placeholder="제목을 입력하세요"></td>
+                      <td><input type="text" class="b_context" name="btitle" th:value="*{btitle}"></td>
                     </tr>
                     <tr>
                       <td class="title">내용</td>
-                      <td><textarea class="b_context" name="" id="" cols="30" rows="10"></textarea></td>
+                      <td><textarea class="b_context" name="bcontent" id="bcontent" cols="30" rows="10" th:text="*{bcontent}"></textarea></td>
                     </tr>
                 </table>
                     

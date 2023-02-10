@@ -50,7 +50,6 @@ public class CommonController {
 		ArrayList<Board> blist = commonService.boardList();
 		
 		if(blist.isEmpty()) {
-			System.out.println("게시글 없음");
 		}else {
 			mv.addObject("blist", blist);	
 		}
@@ -77,7 +76,6 @@ public class CommonController {
 	@GetMapping("/detailBoard")
 	public ModelAndView detailBoard(Board board, ModelAndView mv) {
 		
-		
 		Board detailBoard = commonService.detailBoard(board);
 		
 		mv.addObject("detailBoard", detailBoard);
@@ -90,32 +88,30 @@ public class CommonController {
 	
 	@GetMapping("/deleteBoard")
 	public String deleteBoard(Board board) {
-		System.out.println(board);
 		int result = commonService.deleteBoard(board);
-		System.out.println("g");
-		System.out.println(result);
 		return "redirect:/boardList";
 	}
 
 	
 	@GetMapping("updateBoardPage")
 	public ModelAndView updateBoardPage(Board board, ModelAndView mv) {
-		
-//		커밋테스트용
-//		커밋테스트용2		
-//		브랜치 테스트용
-		
 		Board detailBoard = commonService.detailBoard(board);
-		System.out.println(detailBoard);
-		System.out.println("넘어옴?");
 		mv.addObject("detailBoard", detailBoard);
-		mv.setViewName("boardDetailView");
-		int result = commonService.updateBoard(board);
+		mv.setViewName("boardUpdateView");
 		
 		return mv;
 	}
 	
-	
+
+	@PostMapping("updateBoard")
+	public String updateBoard(Board board, ModelAndView mv) {
+		System.out.println(board);
+		
+		int result = commonService.updateBoard(board);
+		System.out.println(result);
+		
+		return "redirect:/boardList";
+	}
 	
 	
 }

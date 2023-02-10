@@ -14,15 +14,41 @@
         #b_container{
             padding-top: 150px;
         }
+        #userInfo_div{
+        	padding-top: 30px;
+        }
         #w_btn{
             margin-bottom: 5px;
         }
-
+        #boardTable tbody tr:hover{
+            font-weight: bold;
+            cursor: pointer;
+        }
+        a {
+        	text-decoration : none;
+        	color : white;
+        }
+        a:hover {
+        	text-decoration : none;
+        	color : white;
+        }
+        #user_name{
+            border: none;
+            outline:none;
+        }
+        #user name:hover{
+        	border:none;
+        }
+        
     </style>
     <title>게시판</title>
 </head>
 <body>
-<!-- 	<div><button><a href="/loginPage">로그인</a></button></div> -->
+	<div class="d-flex flex-row-reverse container" id="userInfo_div">
+		<div class="p-2">
+	  		<div th:replace="~{header :: header}"></div>
+		</div>
+	</div>
 
 	<div class="container" id="b_container">
         <h2>자유게시판</h2>
@@ -34,7 +60,6 @@
 				<tr>
 	            	<th>글번호</th>
 	            	<th>제목</th>
-	<!--               <th>내용</th> -->
 	            	<th>작성일</th>
 	            	<th>작성자</th>
 	            </tr>
@@ -43,7 +68,6 @@
 	            <tr th:each="list : ${blist}">
 		              <td th:text="${list.bno}" class="bno"></td>
 		              <td th:text="${list.btitle}"></td>
-		<!--               <td th:text="${list.bcontent}"></td> -->
 		              <td th:text="${list.bdate}"></td>
 		              <td th:text="${list.mid}"></td>
 	            </tr>
@@ -60,7 +84,6 @@
 				
 			})
 		})
-	
 	</script>
 	
       

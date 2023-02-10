@@ -24,9 +24,16 @@
         .b_context{
             width: 950px;
         }
+        input{
+        	border:none;
+        	outline:none;
+        }
+		textarea{
+			outline:none;
+		}
 
+        
     </style>
-
     <title>게시글 읽기</title>
 </head>
 <body>
@@ -36,19 +43,19 @@
         <table class="table" th:object="${detailBoard}">
             <tr>
                 <td class="b_title">제목</td>
-                <td><input type="text" class="b_context" th:value="*{btitle}"></td>
+                <td><input type="text" class="b_context" th:value="*{btitle}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">작성자</td>
-                <td><input type="text" class="b_context" th:value="*{mid}"></td>
+                <td><input type="text" class="b_context" th:value="*{mid}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">작성일자</td>
-                <td><input type="text" class="b_context" th:value="*{bdate}"></td>
+                <td><input type="text" class="b_context" th:value="*{bdate}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">내용</td>
-                <td><textarea class="b_context" name="" id="" cols="30" rows="10" th:text="*{bcontent}"></textarea></td>
+                <td><textarea class="b_context" name="" id="" cols="30" rows="10" th:text="*{bcontent}" readonly></textarea></td>
             </tr>
         </table>
             
@@ -71,7 +78,7 @@
 				console.log("gg");
 				console.log(a);
 				console.log()
-				location.href = '/updateBoardPage';
+				location.href = '/updateBoardPage?bno='+a;
 			})
 			
 		})
@@ -85,21 +92,6 @@
 		})
 		
 	</script>
-	<script>
-/* 	$(function(){
-		$("#left_btn").click(function(){
-			console.log("gg");
-			location.href = '/updateBoardPage';
-		})
-		
-	})	 */
-	
-/* 	$(function(){
-		$("#right_btn").click(function(){
-			console.log("gg");
-			location.href = '/deleteBoard';
-		})
-	}) */
-	</script>
+
 </body>
 </html>
