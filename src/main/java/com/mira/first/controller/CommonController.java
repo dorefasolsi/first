@@ -3,6 +3,9 @@ package com.mira.first.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +22,9 @@ import jakarta.servlet.http.HttpSession;
 public class CommonController {
 	@Autowired
 	private CommonService commonService;
+	
+	/* @Autowired */
+	/* private BCryptPasswordEncoder bcryptPasswordEncoder; */
 	
 	@GetMapping("/loginPage")
 	public String loginPage() {
@@ -111,6 +117,37 @@ public class CommonController {
 		System.out.println(result);
 		
 		return "redirect:/boardList";
+	}
+	
+	@GetMapping("enrollPage")
+	public String enrollPage() {
+		return "/enroll";
+	}
+	
+	@PostMapping("/enroll")
+	public ModelAndView insertMember(Member member, ModelAndView mv) {
+		System.out.println(member);
+	
+		
+		System.out.println(member.getMpw());
+		
+		/* String bcryptPw = bcryptPasswordEncoder.encode(member.getMpw()); */
+		
+		/* System.out.println(bcryptPw); */
+		
+		int result = commonService.insertMember(member);
+		System.out.println(result);
+		
+		if(result == 1) {
+			System.out.println("성공");
+			mv.addObject("msg", "회원가입 성공");
+			System.out.println(mv.toString());
+			mv.setViewName("redirect:/");
+		} else {
+			System.out.println("실패");
+			mv.addObject("msg", "회원가입 실패");
+		}
+		return mv;
 	}
 	
 	

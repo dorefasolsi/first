@@ -41,4 +41,8 @@ public class CommonDao {
 		return memberMapper.updateBoard(board);
 	}
 
+	public int insertMember(Member member) {
+		return memberMapper.insertMember(member);
+	}
+
 }
