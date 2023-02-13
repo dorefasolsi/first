@@ -34,6 +34,9 @@
         #user_name:hover{
         	border:none;
         }
+        #logout_a{
+        	color:black;
+        }
         
  	</style>
 	<title>header</title>
@@ -41,7 +44,7 @@
 <body>
 		<header>
 	  		<div class="d-flex flex-row-reverse" id="userInfo_div">
-				<div class="p-2">로그아웃</div>
+				<div class="p-2"><a href="/logout" id="logout_a">로그아웃</a></div>
 				<div class="p-2">
 					<input type="text" id="user_name" class="" th:value="${session.loginUser.mname}+'님 안녕하세요'">
 				</div>

@@ -21,23 +21,21 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String startPage() {
-		System.out.println("/");
 		return "loginPage";
 		
 	}
-	/*
-	 * @GetMapping("/loginPage") public String loginPage() { return "/login";
-	 * 
-	 * }
-	 */
+
 	 
 	@PostMapping("/login") 
 	public String loginMember(Member member, ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		
 		Member loginUser = memberService.loginMember(member);
 		if(loginUser!=null && bcryptPasswordEncoder.matches(member.getMpw(), loginUser.getMpw())) { //
-			mv.setViewName("index");
+			
 			session.setAttribute("loginUser", loginUser); 
+			
 			return "redirect:/boardList";
+			
 		}else { 
 			return "/loginFail"; 
 		} 
@@ -47,27 +45,27 @@ public class MemberController {
 	
 	@GetMapping("/enrollPage") 
 	public String enrollPage() { 
-		return "/enroll"; 
+		return "/enrollPage"; 
 	
 	}
 	
-	@PostMapping("/enroll") public ModelAndView insertMember(Member member,
-	ModelAndView mv) { 
+	@PostMapping("/enroll") 
+	public ModelAndView insertMember(Member member, ModelAndView mv) { 
 	
-		System.out.println(member.getMpw());
 		
 		String bcryptPw = bcryptPasswordEncoder.encode(member.getMpw());
-			 
+		
+		System.out.println("암호화 됐나?" + bcryptPw);
+		
 		member.setMpw(bcryptPw);
+		
 		
 		int result = memberService.insertMember(member);
 		 
 		if(result == 1) { 
-			System.out.println("성공"); 
 			mv.addObject("msg", "success_register");
 			mv.setViewName("redirect:/"); 
 		} else {
-			System.out.println("실패"); 
 			mv.addObject("msg", "fail_register"); 
 		} return mv; 
 	
