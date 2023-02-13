@@ -10,17 +10,9 @@ import com.mira.first.vo.Member;
 
 @Mapper
 public interface MemberMapper {
-	public void insertMember(Member member);
+	public int insertMember(Member member);
 
 	public Member loginMember(Member member);
 	
-	public int insertBoard(Board board);
 
-	public ArrayList<Board> boardList();
-
-	public Board detailBoard(Board board);
-
-	public int deleteBoard(Board board);
-
-	public int updateBoard(Board board);
 }
