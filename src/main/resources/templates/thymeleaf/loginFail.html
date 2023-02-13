@@ -21,9 +21,11 @@
     <title>환영합니다</title>
 </head>
 <body>
-	<script>
-		alert("로그인에 실패하였습니다.");
-	</script>
+ 	<script th:inline="javascript">
+		var a = /*[[${msg}]]*/ {};
+		console.log(a);
+		/* alert("로그인에 실패하였습니다."); */
+	</script> 
     
   	<div class="container" id="b_container">
     	<h2>로그인</h2>

@@ -27,17 +27,21 @@ public class MemberController {
 
 	 
 	@PostMapping("/login") 
-	public String loginMember(Member member, ModelAndView mv, HttpServletRequest request, HttpSession session) {
+	public ModelAndView loginMember(Member member, ModelAndView mv, HttpServletRequest request, HttpSession session) {
 		
 		Member loginUser = memberService.loginMember(member);
 		if(loginUser!=null && bcryptPasswordEncoder.matches(member.getMpw(), loginUser.getMpw())) { //
 			
 			session.setAttribute("loginUser", loginUser); 
-			
-			return "redirect:/boardList";
-			
+			mv.setViewName("redirect:/boardList");
+//			return "redirect:/boardList";
+			return mv;
 		}else { 
-			return "/loginFail"; 
+			mv.addObject("msg", "success_register");
+			System.out.println("로그인 실패");
+//			return "/loginFail"; 
+			mv.setViewName("/loginFail");
+			return mv;
 		} 
 		
 	}
@@ -55,7 +59,6 @@ public class MemberController {
 		
 		String bcryptPw = bcryptPasswordEncoder.encode(member.getMpw());
 		
-		System.out.println("암호화 됐나?" + bcryptPw);
 		
 		member.setMpw(bcryptPw);
 		
