@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,16 +60,22 @@ public class BoardController {
 	  
 	}
 	 
-	@GetMapping("/deleteBoard") 
-	public String deleteBoard(Board board) { 
+	@DeleteMapping("/deleteBoard/{bno}") 
+	public String deleteBoard(@PathVariable("bno") int bno) { 
+		System.out.println("dd");
+		Board board = new Board();
+		board.setBno(bno);
 		int result = boardService.deleteBoard(board); 
 		return "redirect:/boardList"; 
 	}
 	  
 	  
-	@GetMapping("/updateBoardPage") 
-	public ModelAndView updateBoardPage(Board board, ModelAndView mv) { 
+	@PostMapping("/updateBoardPage/{bno}") 
+	public ModelAndView updateBoardPage(@PathVariable("bno") int bno, ModelAndView mv) { 
+		Board board = new Board();
+		board.setBno(bno);
 		Board detailBoard = boardService.detailBoard(board); 
+		
 		mv.addObject("detailBoard", detailBoard);
 		mv.setViewName("boardUpdateView");
 		 
@@ -77,13 +84,15 @@ public class BoardController {
 		  
 		  
 	@PostMapping("/updateBoard") 
-	public String updateBoard(Board board,ModelAndView mv) { 
+	public String updateBoard(Board board, ModelAndView mv) { 
+		
+		
 		System.out.println(board);
-		  
+		
 		int result = boardService.updateBoard(board);
 		System.out.println(result);
 		  
 		return "redirect:/boardList"; 
-	}	
+	}
 	 
 }

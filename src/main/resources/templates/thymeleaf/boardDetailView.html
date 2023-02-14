@@ -62,28 +62,39 @@
             
     </div>
     <div class="d-flex justify-content-center mb-3">
-        <div class="p-2" id="left_btn"><button>수정하기</button></div>
-        <div class="p-2"><button id="right_btn">삭제하기</button></div>
+    
+    	<form th:action="@{'/updateBoardPage/'+${detailBoard.bno}}" th:method="post">
+	        <div class="p-2"><button id="left_btn" type="submit">수정하기</button></div>
+        </form>
+        
+    	<form th:action="@{'/deleteBoard/'+${detailBoard.bno}}" th:method="delete">
+    		<input type="hidden">
+	        <div class="p-2"><button id="right_btn" type="submit">삭제하기</button></div>
+        </form>
+        
     </div>    
+    
+    <script>
+    	
+    
+    </script>
     
 	<script th:inline="javascript">
 
-	
-/* 		var a = [[${session.loginUser.mid}]]; */
  		var a = /*[[${detailBoard.bno}]]*/ {};
-		
 		
 		
  		$(function(){
 			$("#left_btn").click(function(){
-				location.href = '/updateBoardPage?bno='+a;
+/* 				location.href = '/updateBoardPage?bno='+a; */
 			})
 			
 		})
 
 		$(function(){
 			$("#right_btn").click(function(){
-				location.href = '/deleteBoard?bno='+a;
+				//location.href = '/deleteBoard?bno='+a;
+				console.log("zz");
 			})
 		})
 		

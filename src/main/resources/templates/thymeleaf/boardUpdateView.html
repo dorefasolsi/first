@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="container" id="b_container">
-        <form action="updateBoard" method="post">
+        <form th:action="@{'/updateBoard'}" th:method="post">
             
             <div class="container">
                 <h2>수정하기</h2>
@@ -43,7 +43,7 @@
                       <td><input type="text" class="b_context" name="btitle" th:value="*{btitle}"></td>
                     </tr>
                     <tr>
-                      <td class="title">내용</td>
+                      <td class="b_title">내용</td>
                       <td><textarea class="b_context" name="bcontent" id="bcontent" cols="30" rows="10" th:text="*{bcontent}"></textarea></td>
                     </tr>
                 </table>
@@ -65,7 +65,7 @@
     <script>
     
 	    window.onload = $(function(){
-	    	$('#bno').hide();	    	
+	    	$('.bno').hide();	    	
 	    })
     </script>
 </body>
