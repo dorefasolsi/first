@@ -67,38 +67,68 @@
 	        <div class="p-2"><button id="left_btn" type="submit">수정하기</button></div>
         </form>
         
-    	<form th:action="@{'/deleteBoard/'+${detailBoard.bno}}" th:method="delete">
+    	<form id="deleteForm" th:action="@{'/deleteBoard/'+${detailBoard.bno}}" th:method="delete">
     		<input type="hidden">
-	        <div class="p-2"><button id="right_btn" type="submit">삭제하기</button></div>
+	        <div class="p-2"><button id="right_btn" type="button" onclick="deleteBtn_click()">삭제하기</button></div>
         </form>
         
     </div>    
     
     <script>
+    	function deleteBtn_click(){
+    		var result = confirm("정말 삭제하시겠습니까?");
+    		if(result == true){
+	    			document.getElementById('deleteForm').submit();    				
+    		}else{
+    			return;
+    		}
+    	}
     	
-    
-    </script>
-    
-	<script th:inline="javascript">
+/*     	window.onload = function(){
+    		document.getElementById('right_btn').onclick = function(){
+    			var confirm_result = confirm("삭제하시겠습니까?");
+    			if(confirm_result = true){
+    			} else if(confirm_result = false){    				
+					console.log("취소인디");    				
+	    			return false;
+    			}
+    		
+    		}
+    	}; */
+/*     	window.onload = function(){
+    		document.getElementById('right_btn').onclick = function(){
+				console.log("gg");
+	    		var formElement = document.getElementById('deleteForm');
+				formElement.addEventListener('submit', handleSubmit);
+				
+	    		function handleSubmit(event){
+	    			var confirmMsg = comfirm('정말 삭제하시겠습니까?');
+	    			
+	    			if(confirmMsg == false){
+	    				event.preventDefault();
+	    			}
+	    		}
+    		
+    		}
+    	} */
+ 	    /* $(function(){
+	    	$("#right_btn").click(function(){
+	    		var form_comfirm = document.getElementById('deleteForm');
+	    		console.log(form_comfirm);
+	    		var confirm_result = confirm("삭제하시겠습니까?");
+	    		if(confirm_result == true){
+					return true; 			
+	    		} else if(confirm_result == false){
+	    			return false;
+	    		}
+	    		
+	    	})
+	    })	
+ */
 
- 		var a = /*[[${detailBoard.bno}]]*/ {};
-		
-		
- 		$(function(){
-			$("#left_btn").click(function(){
-/* 				location.href = '/updateBoardPage?bno='+a; */
-			})
-			
-		})
 
-		$(function(){
-			$("#right_btn").click(function(){
-				//location.href = '/deleteBoard?bno='+a;
-				console.log("zz");
-			})
-		})
-		
-	</script>
-
+ 
+ 	</script>
+    	
 </body>
 </html>

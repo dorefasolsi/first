@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mira.first.service.BoardService;
@@ -83,15 +84,9 @@ public class BoardController {
 	}
 		  
 		  
-	@PostMapping("/updateBoard") 
+	@PutMapping("/updateBoard") 
 	public String updateBoard(Board board, ModelAndView mv) { 
-		
-		
-		System.out.println(board);
-		
-		int result = boardService.updateBoard(board);
-		System.out.println(result);
-		  
+		int result = boardService.updateBoard(board);		  
 		return "redirect:/boardList"; 
 	}
 	 

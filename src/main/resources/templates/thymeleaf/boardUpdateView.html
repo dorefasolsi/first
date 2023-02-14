@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="container" id="b_container">
-        <form th:action="@{'/updateBoard'}" th:method="post">
+        <form th:action="@{'/updateBoard'}" th:method="Put">
             
             <div class="container">
                 <h2>수정하기</h2>
@@ -50,7 +50,7 @@
                     
             </div>
             <div class="d-flex justify-content-center mb-3">
-                <div class="p-2" id="left_btn"><button type="submit">등록하기</button></div>
+                <div class="p-2"><button type="submit" id="left_btn">등록하기</button></div>
                 <div class="p-2"><button type="reset">취소하기</button></div>
                 
             </div>    
@@ -63,10 +63,10 @@
     </div>
     
     <script>
-    
 	    window.onload = $(function(){
 	    	$('.bno').hide();	    	
 	    })
+
     </script>
 </body>
 </html>
