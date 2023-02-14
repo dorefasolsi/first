@@ -63,7 +63,6 @@ public class BoardController {
 	 
 	@DeleteMapping("/deleteBoard/{bno}") 
 	public String deleteBoard(@PathVariable("bno") int bno) { 
-		System.out.println("dd");
 		Board board = new Board();
 		board.setBno(bno);
 		int result = boardService.deleteBoard(board); 

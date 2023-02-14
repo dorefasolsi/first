@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mira.first.service.MemberService;
@@ -20,8 +21,29 @@ public class MemberController {
 	@Autowired private BCryptPasswordEncoder bcryptPasswordEncoder; 
 	
 	@GetMapping("/")
-	public String startPage() {
-		return "loginPage";
+	public ModelAndView startPage(@SessionAttribute(name="loginUser", required=false) Member loginUser, HttpSession session, ModelAndView mv) {		
+
+		if(loginUser == null) {
+			
+			mv.setViewName("loginPage");
+			return mv;
+		} else {
+			mv.setViewName("redirect:/boardList");
+			return mv;
+		}
+		
+		
+//		if(session.getAttribute("loginUser") == null) {
+//			
+//			mv.setViewName("loginPage");
+//			return mv;
+//		} else {
+//			mv.setViewName("redirect:/boardList");
+//			return mv;
+//		}
+		
+		
+		
 		
 	}
 
@@ -33,6 +55,7 @@ public class MemberController {
 		if(loginUser!=null && bcryptPasswordEncoder.matches(member.getMpw(), loginUser.getMpw())) { //
 			
 			session.setAttribute("loginUser", loginUser); 
+			session.setMaxInactiveInterval(1800); //30분 뒤 세션 remove
 			mv.setViewName("redirect:/boardList");
 //			return "redirect:/boardList";
 			return mv;
