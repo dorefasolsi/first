@@ -25,18 +25,6 @@
 			from BOARD
 			order by bno desc
 
-
-		<!-- select *
-		from ( select
-		@rownum := @rownum +1 as rownum,
-		b.*
-		from board b,
-		(select @rownum:=0) tmp
-		order by bno asc)sub
-		order by sub.rownum desc
-		 -->
-		<!-- 글번호 없고 정/역 아니면 rownum 사용했을텐데.. 퇴근하고 정리할때 지우기~! -->
-
 	</select>
 
 	<!-- 게시글 작성 -->
@@ -66,7 +54,6 @@
 	
 	<!-- 게시글 삭제 -->
 	<delete id="deleteBoard" parameterType="board">
-
 		delete 
 			from BOARD
 			where BNO = #{bno};

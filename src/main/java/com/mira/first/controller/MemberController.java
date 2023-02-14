@@ -21,29 +21,17 @@ public class MemberController {
 	@Autowired private BCryptPasswordEncoder bcryptPasswordEncoder; 
 	
 	@GetMapping("/")
-	public ModelAndView startPage(@SessionAttribute(name="loginUser", required=false) Member loginUser, HttpSession session, ModelAndView mv) {		
+	public ModelAndView startPage(@SessionAttribute(name="loginUser", required=false) Member loginUser, 
+									HttpSession session, ModelAndView mv) {		
 
 		if(loginUser == null) {
 			
 			mv.setViewName("loginPage");
 			return mv;
 		} else {
-			mv.setViewName("redirect:/boardList");
+			mv.setViewName("redirect:/board/list");
 			return mv;
 		}
-		
-		
-//		if(session.getAttribute("loginUser") == null) {
-//			
-//			mv.setViewName("loginPage");
-//			return mv;
-//		} else {
-//			mv.setViewName("redirect:/boardList");
-//			return mv;
-//		}
-		
-		
-		
 		
 	}
 
@@ -56,7 +44,7 @@ public class MemberController {
 			
 			session.setAttribute("loginUser", loginUser); 
 			session.setMaxInactiveInterval(1800); //30분 뒤 세션 remove
-			mv.setViewName("redirect:/boardList");
+			mv.setViewName("redirect:/board/list");
 //			return "redirect:/boardList";
 			return mv;
 		}else { 

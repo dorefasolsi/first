@@ -24,7 +24,7 @@ public class BoardController {
 	@Autowired 
 	private BoardService boardService;
 	  
-	@GetMapping("/boardList") 
+	@GetMapping("/board/list") 
 	public ModelAndView boardList(ModelAndView mv) {
 	  
 		ArrayList<Board> blist = boardService.boardList();
@@ -38,7 +38,7 @@ public class BoardController {
 		return "boardInsertView"; 
 	}
 	  
-	@PostMapping("/insertBoard") 
+	@PostMapping("/board/insert") 
 	public String insertBoard(Board board, ModelAndView mv, HttpSession session) {
 		  
 		Member m = (Member) session.getAttribute("loginUser");
@@ -46,10 +46,10 @@ public class BoardController {
 		 
 		int bd = boardService.insertBoard(board);
 		  
-		return "redirect:/boardList"; 
+		return "redirect:/board/list"; 
 	}
 	  
-	@GetMapping("/detailBoard") 
+	@GetMapping("/board/detail") 
 	public ModelAndView detailBoard(Board board, ModelAndView mv) {
 	  
 		Board detailBoard = boardService.detailBoard(board);
@@ -61,16 +61,16 @@ public class BoardController {
 	  
 	}
 	 
-	@DeleteMapping("/deleteBoard/{bno}") 
+	@DeleteMapping("/board/delete/{bno}") 
 	public String deleteBoard(@PathVariable("bno") int bno) { 
 		Board board = new Board();
 		board.setBno(bno);
 		int result = boardService.deleteBoard(board); 
-		return "redirect:/boardList"; 
+		return "redirect:/board/list"; 
 	}
 	  
 	  
-	@PostMapping("/updateBoardPage/{bno}") 
+	@PostMapping("/board/updatePage/{bno}") 
 	public ModelAndView updateBoardPage(@PathVariable("bno") int bno, ModelAndView mv) { 
 		Board board = new Board();
 		board.setBno(bno);
@@ -83,10 +83,10 @@ public class BoardController {
 	}
 		  
 		  
-	@PutMapping("/updateBoard") 
+	@PutMapping("/board/update") 
 	public String updateBoard(Board board, ModelAndView mv) { 
 		int result = boardService.updateBoard(board);		  
-		return "redirect:/boardList"; 
+		return "redirect:/board/list"; 
 	}
 	 
 }

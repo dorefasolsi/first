@@ -63,11 +63,11 @@
     </div>
     <div class="d-flex justify-content-center mb-3">
     
-    	<form th:action="@{'/updateBoardPage/'+${detailBoard.bno}}" th:method="post">
+    	<form th:action="@{'/board/updatePage/'+${detailBoard.bno}}" th:method="post">
 	        <div class="p-2"><button id="left_btn" type="submit">수정하기</button></div>
         </form>
         
-    	<form id="deleteForm" th:action="@{'/deleteBoard/'+${detailBoard.bno}}" th:method="delete">
+    	<form id="deleteForm" th:action="@{'/board/delete/'+${detailBoard.bno}}" th:method="delete">
     		<input type="hidden">
 	        <div class="p-2"><button id="right_btn" type="button" onclick="deleteBtn_click()">삭제하기</button></div>
         </form>

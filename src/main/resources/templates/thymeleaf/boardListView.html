@@ -82,7 +82,7 @@
 	<script>
 		$(function(){
 			$("#boardTable>tbody>tr").click(function(){
-				location.href = '/detailBoard?bno=' + $(this).children(".bno").text();
+				location.href = '/board/detail?bno=' + $(this).children(".bno").text();
 				
 			})
 		})
