@@ -24,14 +24,14 @@ public class PrincipalDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println(username);
-		PrincipalDetails users = userDao.getUserById(username);
-		
+		User users = userDao.getUserById(username);
+		System.out.println(users + " users");
 		if(users == null) {
 			System.out.println("bb");
 			throw new UsernameNotFoundException("userId : " + username + " not found");
 		}
 		System.out.println("------------------------ success ------------------------");
-		return users;
+		return new PrincipalDetails(users);
 	}
 	
 }

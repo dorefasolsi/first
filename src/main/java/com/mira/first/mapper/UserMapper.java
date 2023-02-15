@@ -15,7 +15,7 @@ public interface UserMapper {
 
 	public User loginUser(User user);
 
-	public PrincipalDetails getUserById(String userId);
+	public User getUserById(String userId);
 	
 
 }

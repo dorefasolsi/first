@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 인증 -->
-	<select id="getUserById" resultType="com.mira.first.configuration.auth.PrincipalDetails" parameterType="String">
+	<select id="getUserById" resultMap="UserResultSet" parameterType="String">
 
 		select *
 			from USER

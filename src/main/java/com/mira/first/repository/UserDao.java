@@ -14,8 +14,8 @@ public class UserDao {
 	 @Autowired 
 	 private UserMapper userMapper;
 	 
-	 public PrincipalDetails getUserById(String userId) {
-		 PrincipalDetails users = userMapper.getUserById(userId);
+	 public User getUserById(String userId) {
+		 User users = userMapper.getUserById(userId);
 		 
 		 return users;
 	 }
