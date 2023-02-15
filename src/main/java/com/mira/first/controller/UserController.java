@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mira.first.service.MemberService;
-import com.mira.first.vo.Member;
+import com.mira.first.service.UserService;
+import com.mira.first.vo.User;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MemberController {
+public class UserController {
 	
-	@Autowired private MemberService memberService;
+	@Autowired private UserService userService;
 	@Autowired private BCryptPasswordEncoder bcryptPasswordEncoder; 
 	
 	@GetMapping("/")
-	public ModelAndView startPage(@SessionAttribute(name="loginUser", required=false) Member loginUser, 
+	public ModelAndView startPage(@SessionAttribute(name="loginUser", required=false) User loginUser, 
 									HttpSession session, ModelAndView mv) {		
 
 		if(loginUser == null) {
@@ -37,10 +37,10 @@ public class MemberController {
 
 	 
 	@PostMapping("/login") 
-	public ModelAndView loginMember(Member member, ModelAndView mv, HttpServletRequest request, HttpSession session) {
+	public ModelAndView loginUser(User user, ModelAndView mv, HttpServletRequest request, HttpSession session) {
 		
-		Member loginUser = memberService.loginMember(member);
-		if(loginUser!=null && bcryptPasswordEncoder.matches(member.getMpw(), loginUser.getMpw())) { //
+		User loginUser = userService.loginUser(user);
+		if(loginUser!=null && bcryptPasswordEncoder.matches(user.getUserPw(), loginUser.getUserPw())) { //
 			
 			session.setAttribute("loginUser", loginUser); 
 			session.setMaxInactiveInterval(1800); //30분 뒤 세션 remove
@@ -65,16 +65,16 @@ public class MemberController {
 	}
 	
 	@PostMapping("/enroll") 
-	public ModelAndView insertMember(Member member, ModelAndView mv) { 
+	public ModelAndView insertUser(User user, ModelAndView mv) { 
 	
 		
-		String bcryptPw = bcryptPasswordEncoder.encode(member.getMpw());
+		String bcryptPw = bcryptPasswordEncoder.encode(user.getUserPw());
 		
 		
-		member.setMpw(bcryptPw);
+		user.setUserPw(bcryptPw);
 		
-		
-		int result = memberService.insertMember(member);
+		user.setRole("ROLE_USER");
+		int result = userService.insertUser(user);
 		 
 		if(result == 1) { 
 			mv.addObject("msg", "success_register");

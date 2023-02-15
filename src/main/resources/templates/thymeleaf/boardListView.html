@@ -68,10 +68,10 @@
           	</thead>
           	<tbody>
 	            <tr th:each="list : ${blist}">
-		              <td th:text="${list.bno}" class="bno"></td>
-		              <td th:text="${list.btitle}"></td>
-		              <td th:text="${list.bdate}"></td>
-		              <td th:text="${list.mid}"></td>
+		              <td th:text="${list.boardNo}" class="boardNo"></td>
+		              <td th:text="${list.boardTitle}"></td>
+		              <td th:text="${list.createDate}"></td>
+		              <td th:text="${list.userId}"></td>
 	            </tr>
           	</tbody>
         
@@ -82,7 +82,7 @@
 	<script>
 		$(function(){
 			$("#boardTable>tbody>tr").click(function(){
-				location.href = '/board/detail?bno=' + $(this).children(".bno").text();
+				location.href = '/board/detail?boardNo=' + $(this).children(".boardNo").text();
 				
 			})
 		})

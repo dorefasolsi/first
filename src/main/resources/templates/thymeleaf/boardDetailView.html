@@ -44,30 +44,30 @@
         <table class="table" th:object="${detailBoard}">
             <tr>
                 <td class="b_title">제목</td>
-                <td><input type="text" class="b_context" th:value="*{btitle}" readonly></td>
+                <td><input type="text" class="b_context" th:value="*{boardTitle}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">작성자</td>
-                <td><input type="text" class="b_context" th:value="*{mid}" readonly></td>
+                <td><input type="text" class="b_context" th:value="*{userId}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">작성일자</td>
-                <td><input type="text" class="b_context" th:value="*{bdate}" readonly></td>
+                <td><input type="text" class="b_context" th:value="*{createDate}" readonly></td>
             </tr>
             <tr>
                 <td class="b_title">내용</td>
-                <td><textarea class="b_context" name="" id="" cols="30" rows="10" th:text="*{bcontent}" readonly></textarea></td>
+                <td><textarea class="b_context" name="" id="" cols="30" rows="10" th:text="*{boardContent}" readonly></textarea></td>
             </tr>
         </table>
             
     </div>
     <div class="d-flex justify-content-center mb-3">
     
-    	<form th:action="@{'/board/updatePage/'+${detailBoard.bno}}" th:method="post">
+    	<form th:action="@{'/board/updatePage/'+${detailBoard.boardNo}}" th:method="post">
 	        <div class="p-2"><button id="left_btn" type="submit">수정하기</button></div>
         </form>
         
-    	<form id="deleteForm" th:action="@{'/board/delete/'+${detailBoard.bno}}" th:method="delete">
+    	<form id="deleteForm" th:action="@{'/board/delete/'+${detailBoard.boardNo}}" th:method="delete">
     		<input type="hidden">
 	        <div class="p-2"><button id="right_btn" type="button" onclick="deleteBtn_click()">삭제하기</button></div>
         </form>

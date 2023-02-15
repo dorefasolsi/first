@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mira.first.mapper.BoardMapper;
-import com.mira.first.mapper.MemberMapper;
+import com.mira.first.mapper.UserMapper;
 import com.mira.first.vo.Board;
-import com.mira.first.vo.Member;
+import com.mira.first.vo.User;
 
 @SpringBootTest
 public class MapperTest {
 
 	@Autowired
-	private MemberMapper memberMapper;
+	private UserMapper memberMapper;
 	private BoardMapper boardMapper;
 	
 //	@Test

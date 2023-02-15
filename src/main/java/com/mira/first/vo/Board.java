@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Board {
 
-	private int bno;
-	private String btitle;
-	private String bcontent;
-	private Date bdate;
-	private String mid;
+	private int boardNo;
+	private String boardTitle;
+	private String boardContent;
+	private Date createDate;
+	private String userId;
 
 
 }

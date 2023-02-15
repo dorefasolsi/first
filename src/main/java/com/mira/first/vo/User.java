@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class User {
 	
 
-	private String mid;
-	private String mpw;
-	private String mname;
+	private String userId;
+	private String userPw;
+	private String userName;
+	private String role;
 
 	
 

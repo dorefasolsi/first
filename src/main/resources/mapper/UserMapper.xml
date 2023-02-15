@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mira.first.mapper.UserMapper">
+
+	<resultMap id="UserResultSet" type="User">
+		<result column="userId" property="userId" />
+		<result column="userPw" property="userPw" />
+		<result column="userName" property="userName" />
+		<result column="role" property="role" />
+		
+	</resultMap>
+	
+	<resultMap id="BoardResultSet" type="Board">	
+		<result column="boardNo" property="boardNo" />
+		<result column="boardTitle" property="boardTitle" />
+		<result column="boardContent" property="boardContent" />
+		<result column="createDate" property="createDate" />
+		<result column="userId" property="userId" />
+	</resultMap>
+
+
+	<!-- 로그인 -->
+	<select id="loginUser" resultMap="UserResultSet" parameterType="user">
+
+		select *
+			from USER
+			where
+				USERID = #{userId};
+
+	</select>
+	
+	<!-- 인증 -->
+	<select id="getUserById" resultType="com.mira.first.configuration.auth.PrincipalDetails" parameterType="String">
+
+		select *
+			from USER
+			where
+				USERID = #{userId};
+				
+
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="user">
+
+		insert into USER(
+			USERID
+			, USERPW
+			, USERNAME
+			, ROLE
+		) values (
+			#{userId}
+			, #{userPw}
+			, #{userName}
+			, #{role}
+		)
+
+	</insert>
+	
+	
+
+
+</mapper>
