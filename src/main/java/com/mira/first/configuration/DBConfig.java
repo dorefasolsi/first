@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -46,6 +47,8 @@ public class DBConfig {
 		
 		factoryBean.setDataSource(dataSource);
 		factoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/*Mapper.xml"));
+		System.out.println(applicationContext.getResources("classpath:/mapper/*Mapper.xml"));
+		System.out.println(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*Mapper.xml"));
 		factoryBean.setTypeAliasesPackage("com.mira.first.vo");
 		
 		return factoryBean.getObject();

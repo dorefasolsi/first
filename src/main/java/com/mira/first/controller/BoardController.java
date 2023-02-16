@@ -41,8 +41,8 @@ public class BoardController {
 	@PostMapping("/board/insert") 
 	public String insertBoard(Board board, ModelAndView mv, HttpSession session) {
 		  
-		User m = (User) session.getAttribute("loginUser");
-		board.setUserId(m.getUserId());
+		User user = (User) session.getAttribute("loginUser");
+		board.setUserId(user.getUserId());
 		 
 		int bd = boardService.insertBoard(board);
 		  

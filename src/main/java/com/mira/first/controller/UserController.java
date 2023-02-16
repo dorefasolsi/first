@@ -34,26 +34,21 @@ public class UserController {
 		}
 		
 	}
-
-	 
-	@PostMapping("/login") 
-	public ModelAndView loginUser(User user, ModelAndView mv, HttpServletRequest request, HttpSession session) {
-		
-		User loginUser = userService.loginUser(user);
-		if(loginUser!=null && bcryptPasswordEncoder.matches(user.getUserPw(), loginUser.getUserPw())) { //
-			
-			session.setAttribute("loginUser", loginUser); 
-			session.setMaxInactiveInterval(1800); //30분 뒤 세션 remove
-			mv.setViewName("redirect:/board/list");
-//			return "redirect:/boardList";
-			return mv;
-		}else { 
-			mv.addObject("msg", "success_register");
-			System.out.println("로그인 실패");
-//			return "/loginFail"; 
-			mv.setViewName("/loginFail");
-			return mv;
-		} 
+	
+	@GetMapping("/loginFail")
+	public ModelAndView loginFailPage(ModelAndView mv) {
+		mv.setViewName("loginFail");
+		return mv;
+	}
+	@GetMapping("/login") 
+	public ModelAndView loginUser(String username, String password, ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		System.out.println(username);
+		System.out.println(password);
+		System.out.println("skjadkdja?");
+//		session.setAttribute("loginUser", user); 
+		session.setMaxInactiveInterval(1800); //30분 뒤 세션 remove
+		mv.setViewName("redirect:/board/list");
+		return mv;
 		
 	}
 	
